@@ -1,0 +1,59 @@
+/* new book button */
+.new-book-container {
+  display: flex;
+  justify-content: center;
+  align-items: top;
+}
+
+/* new book form */
+
+.dialog {
+  border: 1.5px solid black;
+  border-radius: 5px;
+  padding: 0;
+
+  width: 300px;
+}
+
+.close-button-container {
+  padding: 1em;
+  display: flex;
+  justify-content: right;
+}
+
+#close-button {
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.info {
+  padding: 0.2em 2em;
+}
+
+.info div > p{
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.info div > input[type=text] {
+  width: 95%;
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid black;
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  margin-bottom: 15px;
+}
+
+#submit-button {
+  height: 35px;
+  width: 100px;
+  border-radius: 5px;
+  font-size: 15px;
+
+  border: 1px solid black;
+}
