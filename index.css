@@ -77,7 +77,8 @@
 .table-div {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  width: 800px;
+  /* max-width: 800px; */
   background-color: rgb(223, 221, 221);
 }
 
@@ -106,7 +107,7 @@
 }
 
 .pages-cell,
-.read-cell {
+.read-cell,
+.delete-cell {
   text-align: center;
-  /* display: table-cell; */
 }

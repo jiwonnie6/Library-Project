@@ -17,6 +17,7 @@ function Book(author, title, pages, read) {
   this.title = title;
   this.pages = pages;
   this.read = read;
+  this.deleted = false;
 }
 
 function newBookForm() {
@@ -70,26 +71,52 @@ function publishLibrary(books) {
 
     // pages
     const pagesCell = document.createElement("td");
-    pagesCell.textContent = book.pages;
     pagesCell.classList.add("pages-cell");
+
+    pagesCell.textContent = book.pages;
     row.appendChild(pagesCell);
 
     // read pages // checkbox input
     const readCell = document.createElement("td");
+    readCell.classList.add("read-cell");
+
     const readCheck = document.createElement("input");
     readCheck.setAttribute("type", "checkbox");
 
     readCheck.checked = book.read === "true";
 
     readCell.appendChild(readCheck);
-    readCell.classList.add("read-cell");
     row.appendChild(readCell);
 
+    // delete
+    const deleteCell = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("type", "button");
+    deleteCell.classList.add("delete-cell");
+    deleteButton.classList.add("delete-button");
+
+    deleteButton.innerText = "x";
+    deleteCell.appendChild(deleteButton);
+    row.appendChild(deleteCell);
+    
+    deleteButton.addEventListener("click", e => {
+
+      e.preventDefault();
+
+      const index = myLibrary.findIndex(book => book.title === titleCell.textContent);
+      // Remove the book from the array
+      if (index !== -1) {
+        myLibrary.splice(index, 1);
+      }
+
+      row.remove();
+    });
 
     // add child to container
     container.appendChild(row);
   });
 }
+
 
 function initialize() {
   publishLibrary(myLibrary);
