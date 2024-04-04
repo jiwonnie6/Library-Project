@@ -1,3 +1,4 @@
+
 /* new book button */
 .new-book-container {
   display: flex;
@@ -9,6 +10,8 @@
 #new-book {
   /* width: 250px; */
   font-size: 16px;
+  font-weight: bold;
+  /* font-family: 'Times New Roman', Times, serif !important; */
 }
 
 /* new book form */
@@ -105,4 +108,5 @@
 .pages-cell,
 .read-cell {
   text-align: center;
+  /* display: table-cell; */
 }

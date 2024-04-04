@@ -7,9 +7,9 @@ const container = document.getElementById("book-table-container");
 const form = document.getElementById("add-book-form")
 
 const myLibrary = [
-  new Book("Holly Black", "Book of Night", "319", "read"),
-  new Book("M. L. Wang", "The Sword of Kaigen: A Theonite War Story", "651", "read"),
-  new Book("J. D. Barker and James Patterson", "The Coast-to-Coast Murders", "576", "read")
+  new Book("Holly Black", "Book of Night", "319", "true"),
+  new Book("M. L. Wang", "The Sword of Kaigen: A Theonite War Story", "651", "false"),
+  new Book("J. D. Barker and James Patterson", "The Coast-to-Coast Murders", "576", "true")
 ];
 
 function Book(author, title, pages, read) {
@@ -41,7 +41,7 @@ function addBookToLibrary() {
   authorValue = document.getElementById("author").value;
   titleValue = document.getElementById("title").value;
   pagesValue = document.getElementById("pages").value;
-  readValue = document.getElementById("read").value;
+  readValue = document.getElementById("read").checked ? "true" : "false";
 
   myLibrary.push(new Book(authorValue, titleValue, pagesValue, readValue));
 
@@ -58,24 +58,35 @@ function publishLibrary(books) {
     const row = document.createElement("tr");
     row.classList.add("book-info");
 
+    // author
     const authorCell = document.createElement("td");
     authorCell.textContent = book.author;
     row.appendChild(authorCell);
 
+    // title
     const titleCell = document.createElement("td");
     titleCell.textContent = book.title;
     row.appendChild(titleCell);
 
+    // pages
     const pagesCell = document.createElement("td");
     pagesCell.textContent = book.pages;
     pagesCell.classList.add("pages-cell");
     row.appendChild(pagesCell);
 
+    // read pages // checkbox input
     const readCell = document.createElement("td");
-    readCell.textContent = book.read;
+    const readCheck = document.createElement("input");
+    readCheck.setAttribute("type", "checkbox");
+
+    readCheck.checked = book.read === "true";
+
+    readCell.appendChild(readCheck);
     readCell.classList.add("read-cell");
     row.appendChild(readCell);
 
+
+    // add child to container
     container.appendChild(row);
   });
 }
