@@ -1,3 +1,11 @@
+const dialog = document.querySelector("dialog");
+const new_book_button = document.querySelector("#new-book");
+const close_button = document.querySelector("#close-button");
+const submit_button = document.querySelector("submit-button");
+
+const container = document.getElementById("book-table-container");
+const form = document.getElementById("add-book-form")
+
 const myLibrary = [
   new Book("Holly Black", "Book of Night", "319", "read"),
   new Book("M. L. Wang", "The Sword of Kaigen: A Theonite War Story", "651", "read"),
@@ -5,38 +13,46 @@ const myLibrary = [
 ];
 
 function Book(author, title, pages, read) {
-  // the constructor...
   this.author = author;
   this.title = title;
   this.pages = pages;
   this.read = read;
 }
 
-function addBookToLibrary() {
-  // do stuff here
-}
-
-
 function newBookForm() {
-  const dialog = document.querySelector("dialog");
-  const new_book_button = document.querySelector("#new-book");
-  const close_button = document.querySelector("#close-button");
-  const submit_button = document.querySelector("submit-button")
-
   new_book_button.addEventListener("click", () => {
     dialog.showModal();
   });
 
-  close_button.addEventListener("click", () => {
+  close_button.addEventListener("click", (e) => {
+    e.preventDefault();
     dialog.close();
+    form.reset();
   });
 
-  // submit_button.addEventListener
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+  
+    addBookToLibrary();
+  });
+}
+
+function addBookToLibrary() {
+  authorValue = document.getElementById("author").value;
+  titleValue = document.getElementById("title").value;
+  pagesValue = document.getElementById("pages").value;
+  readValue = document.getElementById("read").value;
+
+  myLibrary.push(new Book(authorValue, titleValue, pagesValue, readValue));
+
+  form.reset();
+  dialog.close();
+
+  publishLibrary(myLibrary);
 }
 
 function publishLibrary(books) {
-
-  const container = document.getElementById("book-table-container");
+  container.innerHTML = '';
 
   books.forEach(book => {
     const row = document.createElement("tr");
@@ -52,16 +68,24 @@ function publishLibrary(books) {
 
     const pagesCell = document.createElement("td");
     pagesCell.textContent = book.pages;
+    pagesCell.classList.add("pages-cell");
     row.appendChild(pagesCell);
 
     const readCell = document.createElement("td");
     readCell.textContent = book.read;
+    readCell.classList.add("read-cell");
     row.appendChild(readCell);
 
     container.appendChild(row);
   });
 }
 
-publishLibrary(myLibrary);
+function initialize() {
+  publishLibrary(myLibrary);
+  newBookForm();
+}
 
-newBookForm();
+initialize();
+
+
+
