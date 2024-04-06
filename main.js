@@ -17,7 +17,6 @@ function Book(author, title, pages, read) {
   this.title = title;
   this.pages = pages;
   this.read = read;
-  this.deleted = false;
 }
 
 function newBookForm() {
@@ -104,7 +103,7 @@ function publishLibrary(books) {
       e.preventDefault();
 
       const index = myLibrary.findIndex(book => book.title === titleCell.textContent);
-      // Remove the book from the array
+
       if (index !== -1) {
         myLibrary.splice(index, 1);
       }
@@ -112,7 +111,6 @@ function publishLibrary(books) {
       row.remove();
     });
 
-    // add child to container
     container.appendChild(row);
   });
 }

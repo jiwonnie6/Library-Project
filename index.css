@@ -111,3 +111,15 @@
 .delete-cell {
   text-align: center;
 }
+
+.delete-button {
+  border: 1px solid rgb(249, 162, 162);
+  border-radius: 2px;
+  background-color: rgb(249, 219, 219);
+  color: rgb(209, 26, 42);
+  font-weight: bold;
+}
+
+.delete-button:hover {
+  background: rgb(247, 191, 191);
+}
